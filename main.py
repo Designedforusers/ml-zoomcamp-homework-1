@@ -70,4 +70,51 @@ elif new_median < original_median:
 else:
     print("Answer: No")
 
+# Question 3: Sum of weights calculation
+print("\n" + "="*50)
+print("Q3: Sum of weights calculation")
+print("="*50)
+
+# Step 1: Select all cars from Asia
+asian_cars_q3 = df[df['origin'] == 'Asia']
+print(f"Number of cars from Asia: {len(asian_cars_q3)}")
+
+# Step 2: Select only columns vehicle_weight and model_year
+selected_cols = asian_cars_q3[['vehicle_weight', 'model_year']]
+print(f"Selected columns shape: {selected_cols.shape}")
+
+# Step 3: Select the first 7 values
+first_7 = selected_cols.head(7)
+print("First 7 values:")
+print(first_7)
+
+# Step 4: Get the underlying NumPy array (X)
+X = first_7.values
+print(f"\nX shape: {X.shape}")
+print("X array:")
+print(X)
+
+# Step 5: Compute X.T @ X (matrix multiplication)
+XTX = X.T @ X
+print(f"\nXTX shape: {XTX.shape}")
+print("XTX matrix:")
+print(XTX)
+
+# Step 6: Invert XTX
+XTX_inv = np.linalg.inv(XTX)
+print(f"\nInverse of XTX:")
+print(XTX_inv)
+
+# Step 7: Create array y
+y = np.array([1100, 1300, 800, 900, 1000, 1100, 1200])
+print(f"\ny array: {y}")
+
+# Step 8: Multiply: inverse(XTX) @ X.T @ y = w
+w = XTX_inv @ X.T @ y
+print(f"\nw result: {w}")
+
+# Step 9: Sum of all elements of w
+w_sum = np.sum(w)
+print(f"\nSum of all elements of w: {w_sum}")
+
 print("\nDataset loaded successfully! Ready for machine learning analysis.")
