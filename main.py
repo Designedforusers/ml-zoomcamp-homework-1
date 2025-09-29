@@ -23,4 +23,9 @@ print(df.dtypes)
 print("\nMissing values:")
 print(df.isnull().sum())
 
+print("\nFuel types analysis:")
+print(f"Number of unique fuel types: {df['fuel_type'].nunique()}")
+print("Fuel types present:")
+print(df['fuel_type'].value_counts())
+
 print("\nDataset loaded successfully! Ready for machine learning analysis.")
